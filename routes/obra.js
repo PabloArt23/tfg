@@ -1,0 +1,21 @@
+"use strict";
+var __importDefault = (this && this.__importDefault) || function (mod) {
+    return (mod && mod.__esModule) ? mod : { "default": mod };
+};
+Object.defineProperty(exports, "__esModule", { value: true });
+const express_1 = require("express");
+const obra_1 = require("../controllers/obra");
+const validate_tokens_1 = __importDefault(require("./validate-tokens"));
+const router = (0, express_1.Router)();
+router.get('/', validate_tokens_1.default, obra_1.getObras);
+router.get('/get:id', validate_tokens_1.default, obra_1.getObraAEditar);
+router.post('/', obra_1.newObra);
+router.post('/actualizar/:id', obra_1.actualizarObra);
+router.post('/borrar/:id', obra_1.borrarObra);
+router.get('/obtenerCategorias', obra_1.obtenerCategorias);
+router.get('/obtenerCatDir', obra_1.obtenerCategoriasYDirecciones);
+router.get('/obtenerRecientes', obra_1.obtenerObrasRecientes);
+router.get('/obtenerRetratos', obra_1.obtenerRetratos);
+router.get('/obtenerCarteles', obra_1.obtenerCarteles);
+router.get('/getcat:categoria', obra_1.obtenerObrasGaleria);
+exports.default = router;
